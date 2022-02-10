@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
@@ -16,10 +16,10 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 const db = mongoose.connection
 
-db.on('error', error => 
-  console.error(error))
-db.once('open', () => 
-  console.log('Conected to mangoose'))
+db.on('error', error => {
+  console.error(error)})
+db.once('open', () => {
+  console.log('Conected to mangoose')})
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
