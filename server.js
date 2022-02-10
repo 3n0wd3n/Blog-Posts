@@ -1,6 +1,5 @@
 const dotenv = require("dotenv");
 
-dotenv.config();
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -8,7 +7,8 @@ const methodOverride = require('method-override')
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 const app = express()
-const port = process.env.PORT || 5001
+var serverPort = 8080;
+const port = process.env.PORT || serverPort
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
@@ -33,3 +33,7 @@ app.get('/', async (req, res) => {
 app.use('/articles', articleRouter)
 
 app.listen(port)
+// const server = app.listen(process.env.PORT || serverPort, () => {
+//   const port = server.address().port;
+//   console.log(`Express is working on port ${port}`);
+// });
